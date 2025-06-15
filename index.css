@@ -17,7 +17,6 @@ main {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  padding: 46px;
   background-color: white;
 }
 
@@ -27,7 +26,11 @@ header {
   background-position: center -150px;
   background-repeat: no-repeat;
   color: white;
-  font-weight: 400;
+  padding: 46px;
+}
+
+main {
+  padding: 66px 46px;
 }
 
 h1 {
@@ -38,12 +41,19 @@ header p {
   font-size: 1.25rem;
 }
 /* MAIN */
-/* ITEM CARDS */
+/*** MENU SECTION ***/
+#menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-bottom: 45px;
+}
 
 .item-card {
   display: flex;
   border-bottom: 1px solid #d2d2d2;
   align-items: flex-start;
+  padding-bottom: 50px;
 }
 
 .item-graphic {
@@ -66,7 +76,6 @@ header p {
 
 .item-price {
   font-size: 1.25rem;
-  margin-bottom: 50px;
 }
 
 .add-btn {
@@ -83,4 +92,55 @@ header p {
   justify-content: center;
   align-items: center;
   vertical-align: middle;
+}
+
+/*** CHECKOUT SECTION ***/
+#checkout-section h2 {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 64px;
+}
+
+.checkout-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.checkout-item-title,
+.total-price-title {
+  font-size: 1.75rem;
+  margin-right: 12px;
+}
+
+.checkout-item-price,
+.total-price {
+  margin-left: auto;
+  font-size: 1.25rem;
+}
+
+.checkout-item-remove {
+  color: #bbb;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+}
+
+.total-price-container {
+  display: flex;
+  border-top: 2px solid #393333;
+  padding-top: 12px;
+  margin-bottom: 50px;
+}
+
+#checkout-section button {
+  font-family: "Inter", sans-serif;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: #16db99;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  padding: 18px 0;
 }

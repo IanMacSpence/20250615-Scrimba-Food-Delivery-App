@@ -6,9 +6,6 @@ import { menuArray } from "/data.js";
  * > render the array
  */
 function getMenuHtml() {
-  menuArray.forEach(function (item) {
-    console.log(item);
-  });
   const menuHtmlArray = menuArray.map((menuItem) => {
     return ` <div class="item-card">
               <div class="item-graphic">${menuItem.emoji}</div>
@@ -17,14 +14,12 @@ function getMenuHtml() {
                   <p class="item-description">${menuItem.ingredients.join(
                     ", "
                   )}</p>
-                  <p class="item-price">${menuItem.price}</p>
+                  <p class="item-price">$${menuItem.price}</p>
               </div>
               <div class="add-btn">+</div>
             </div>`;
   });
-
-  menuHtmlArray.forEach((item) => console.log(item));
-  return menuHtmlArray;
+  return menuHtmlArray.join("");
 }
 
 /* Attach the array to the parent */
