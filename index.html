@@ -56,6 +56,42 @@
         </div>
         <button>Complete order</button>
       </section>
+      <section id="card-details-modal">
+        <h2>Enter card details</h2>
+        <form>
+          <input
+            type="text"
+            name="card-name-input"
+            id="card-name-input"
+            placeholder="Enter your name"
+            required
+          />
+          <input
+            type="text"
+            inputmode="numeric"
+            pattern="\d{13,19}"
+            maxlength="19"
+            id="card-number-input"
+            placeholder="Enter card number"
+            required
+          />
+          <input
+            type="text"
+            inputmode="numeric"
+            pattern="\d{3,4}"
+            maxlength="4"
+            id="card-cvv-input"
+            placeholder="Enter CVV"
+            required
+          />
+          <button class="card-details-submit-btn">Pay</button>
+        </form>
+      </section>
+      <section id="thank-you-message">
+        <p class="thank-you-message-text">
+          Thanks, James! Your order is on its way!
+        </p>
+      </section>
     </main>
     <script src="index.js" type="module"></script>
   </body>

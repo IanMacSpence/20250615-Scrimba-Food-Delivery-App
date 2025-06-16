@@ -95,6 +95,9 @@ header p {
 }
 
 /*** CHECKOUT SECTION ***/
+#checkout-section {
+  margin-bottom: 46px;
+}
 #checkout-section h2 {
   text-align: center;
   font-size: 1.75rem;
@@ -132,8 +135,37 @@ header p {
   margin-bottom: 50px;
 }
 
-#checkout-section button {
-  font-family: "Inter", sans-serif;
+/*** CARD DETAILS MODAL ***/
+#card-details-modal {
+  padding: 48px 24px 30px;
+  box-shadow: 0 0 120px rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+}
+
+#card-details-modal h2 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 48px;
+}
+
+#card-details-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+#card-details-modal form input {
+  padding: 26px 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.25rem;
+}
+
+/* BUTTONS */
+
+#checkout-section button,
+#card-details-modal form button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: white;
   font-size: 1rem;
   font-weight: 700;
@@ -143,4 +175,23 @@ header p {
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
   width: 100%;
   padding: 18px 0;
+}
+
+#card-details-modal form button {
+  font-size: 1.25rem;
+}
+
+/*** THANK YOU MESSAGE  ***/
+#thank-you-message {
+  background-color: #ecfdf5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 60px;
+  border-radius: 4px;
+}
+
+.thank-you-message-text {
+  color: #065f46;
+  font-size: 2rem;
 }
