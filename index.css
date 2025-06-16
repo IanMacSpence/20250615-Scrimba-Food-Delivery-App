@@ -97,6 +97,7 @@ header p {
 /*** CHECKOUT SECTION ***/
 #checkout-section {
   margin-bottom: 46px;
+  display: block;
 }
 #checkout-section h2 {
   text-align: center;
@@ -108,6 +109,13 @@ header p {
   display: flex;
   align-items: center;
   margin-bottom: 12px;
+}
+
+.checkout-item-count {
+  margin-right: 12px;
+  padding: 1px 4px 0;
+  background-color: #e6e6e6;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .checkout-item-title,
