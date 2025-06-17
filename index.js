@@ -9,7 +9,6 @@ const checkoutSection = document.getElementById("checkout-section");
 const checkoutItemsContainer = document.getElementById(
   "checkout-items-container"
 );
-// const checkoutIsVisible = false;
 
 /* EVENT LISTENERS */
 document.addEventListener("click", (e) => {
@@ -66,11 +65,9 @@ function handleAddClick(menuItemId) {
   // Calculate total price
 }
 
-// get id and check if it exists in order list
-// if no, add it with a count of 1
-// if yes, increment its count by 1
-// when you render the order list, get the name, show the price times the number of
-// items; add the total price
+function handleRemoveClick(removeItemId) {}
+
+
 
 /*** CLICK HANDLING ***/
 // clicks that don't click anything
