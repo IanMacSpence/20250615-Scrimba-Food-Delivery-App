@@ -5,22 +5,43 @@ import { menuArray } from "/data.js";
 
 /*** VARIABLES ***/
 const orderArray = [];
+let customerName = "";
+
+/*** DOCUMENT ELEMENTS ***/
 const checkoutSection = document.getElementById("checkout-section");
 const checkoutItemsContainer = document.getElementById(
   "checkout-items-container"
 );
-const totalPriceContainer = document.getElementById("total-price-container");
 const totalPriceDiv = document.getElementById("total-price");
+const cardDetailsModal = document.getElementById("card-details-modal");
+const thankYouMessage = document.getElementById("thank-you-message");
+const customerNameSpan = document.getElementById("customer-name");
 
 /* EVENT LISTENERS */
+// add button
+// remove button
+// complete order button
+// pay button
 document.addEventListener("click", (e) => {
   if (e.target.dataset.add) {
     handleAddClick(e.target.dataset.add);
   } else if (e.target.dataset.remove) {
     handleRemoveClick(e.target.dataset.remove);
+  } else if (e.target.id === "complete-order-btn") {
+    showCardModal();
+    cardDetailsModal.style.display = "block";
+  } else if (e.target.id === "card-details-submit-btn") {
+    e.preventDefault();
+    const cardForm = document.getElementById("card-form");
+    customerName = cardForm.querySelector('[name="card-name-input"]').value;
+    customerNameSpan.textContent = customerName;
+    cardDetailsModal.style.display = "none";
+    checkoutSection.style.display = "none";
+    thankYouMessage.style.display = "flex";
   }
 });
 
+/* ADD ITEM */
 function handleAddClick(menuItemId) {
   // find the relevant menu item in data.js and add it to the order array
   const selectedItem = menuArray.find((menuItem) => {
@@ -45,6 +66,7 @@ function handleAddClick(menuItemId) {
   renderCheckout();
 }
 
+/* REMOVE ITEM */
 function handleRemoveClick(removeItemId) {
   const removeItemIndex = orderArray.findIndex(
     (item) => item.id === parseInt(removeItemId)
@@ -57,6 +79,7 @@ function handleRemoveClick(removeItemId) {
   renderCheckout();
 }
 
+/* RENDER CHECKOUT SECTION */
 function renderCheckout() {
   // If checkout container is hidden, show it
   if (orderArray.length === 0) {
@@ -82,22 +105,10 @@ function renderCheckout() {
   const totalPrice = orderArray.reduce((sum, currentItem) => {
     return sum + currentItem.price * currentItem.count;
   }, 0);
-  // const totalPriceHtml = `<div class="total-price">$${totalPrice}</div>`;
   totalPriceDiv.textContent = `$${totalPrice}`;
 }
 
-/*** CLICK HANDLING ***/
-// clicks that don't click anything
-// add button
-// remove button
-// complete order button
-// pay button
-
-/**
- * Render menu options
- * > convert the array to html
- * > render the array
- */
+/* GET THE HTML FOR MENU FROM data.js */
 function getMenuHtml() {
   const menuHtmlArray = menuArray.map((menuItem) => {
     return ` <div class="item-card">
@@ -115,17 +126,28 @@ function getMenuHtml() {
   return menuHtmlArray.join("");
 }
 
-/* Attach the array to the parent */
-function render() {
+/* RENDER MENU */
+function renderMenu() {
   document.getElementById("menu-section").innerHTML = getMenuHtml();
 }
-render();
-/**
- * {
-        name: "Pizza",
-        ingredients: ["pepperoni", "mushrom", "mozarella"],
-        id: 0,
-        price: 14,
-        emoji: "🍕"
-    },
+renderMenu();
+
+/* CARD DETAILS MODAL */
+//- make display none by default
+//- show the modal once the order button has been clicked
+//- modal needs to be fixed
+//- hide modal once pay now button has been clicked
+//- prevent default
+//- need to handle form data and save name for the ty message
+function showCardModal() {
+  console.log("Hi");
+}
+
+/* THANK YOU MESSAGE */
+//- Once pay button is clicked, hide the card modal and show the
+// thank you message using the name from the card details
+
+/* ISSUES */
+/*
+ * Form needs to complain if details not entered
  */

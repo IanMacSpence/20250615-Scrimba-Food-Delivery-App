@@ -145,7 +145,17 @@ header p {
 
 /*** CARD DETAILS MODAL ***/
 #card-details-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 524px;
+  height: 542.24px;
   padding: 48px 24px 30px;
+  background-color: white;
   box-shadow: 0 0 120px rgba(0, 0, 0, 0.8);
   border-radius: 4px;
 }
@@ -191,8 +201,8 @@ header p {
 
 /*** THANK YOU MESSAGE  ***/
 #thank-you-message {
+  display: none;
   background-color: #ecfdf5;
-  display: flex;
   justify-content: center;
   align-items: center;
   padding: 48px 60px;
