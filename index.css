@@ -97,7 +97,7 @@ header p {
 /*** CHECKOUT SECTION ***/
 #checkout-section {
   margin-bottom: 46px;
-  display: block;
+  display: none;
 }
 #checkout-section h2 {
   text-align: center;
@@ -125,7 +125,7 @@ header p {
 }
 
 .checkout-item-price,
-.total-price {
+#total-price {
   margin-left: auto;
   font-size: 1.25rem;
 }
@@ -136,7 +136,7 @@ header p {
   font-size: 0.75rem;
 }
 
-.total-price-container {
+#total-price-container {
   display: flex;
   border-top: 2px solid #393333;
   padding-top: 12px;

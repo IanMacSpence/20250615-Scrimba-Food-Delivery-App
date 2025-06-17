@@ -9,6 +9,8 @@ const checkoutSection = document.getElementById("checkout-section");
 const checkoutItemsContainer = document.getElementById(
   "checkout-items-container"
 );
+const totalPriceContainer = document.getElementById("total-price-container");
+const totalPriceDiv = document.getElementById("total-price");
 
 /* EVENT LISTENERS */
 document.addEventListener("click", (e) => {
@@ -40,7 +42,22 @@ function handleAddClick(menuItemId) {
     };
     orderArray.push(orderedItem);
   }
+  renderCheckout();
+}
 
+function handleRemoveClick(removeItemId) {
+  const removeItemIndex = orderArray.findIndex(
+    (item) => item.id === parseInt(removeItemId)
+  );
+  if (orderArray[removeItemIndex].count === 1) {
+    orderArray.splice(removeItemIndex, 1);
+  } else {
+    orderArray[removeItemIndex].count--;
+  }
+  renderCheckout();
+}
+
+function renderCheckout() {
   // If checkout container is hidden, show it
   if (orderArray.length === 0) {
     checkoutSection.style.display = "none";
@@ -60,14 +77,14 @@ function handleAddClick(menuItemId) {
             }</p>
           </div>`;
   });
-  console.log(checkoutHtmlArray);
   checkoutItemsContainer.innerHTML = checkoutHtmlArray.join("");
   // Calculate total price
+  const totalPrice = orderArray.reduce((sum, currentItem) => {
+    return sum + currentItem.price * currentItem.count;
+  }, 0);
+  // const totalPriceHtml = `<div class="total-price">$${totalPrice}</div>`;
+  totalPriceDiv.textContent = `$${totalPrice}`;
 }
-
-function handleRemoveClick(removeItemId) {}
-
-
 
 /*** CLICK HANDLING ***/
 // clicks that don't click anything
