@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
@@ -51,6 +49,7 @@
             pattern="\d{13,19}"
             maxlength="19"
             id="card-number-input"
+            name="card-number-input"
             placeholder="Enter card number"
             required
           />
@@ -60,10 +59,11 @@
             pattern="\d{3,4}"
             maxlength="4"
             id="card-cvv-input"
+            name="card-cvv-input"
             placeholder="Enter CVV"
             required
           />
-          <button id="card-details-submit-btn">Pay</button>
+          <button id="card-details-submit-btn" type="submit">Pay</button>
         </form>
       </section>
       <section id="thank-you-message">

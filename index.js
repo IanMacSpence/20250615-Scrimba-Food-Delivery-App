@@ -18,30 +18,42 @@ const thankYouMessage = document.getElementById("thank-you-message");
 const customerNameSpan = document.getElementById("customer-name");
 
 /* EVENT LISTENERS */
-// add button
-// remove button
-// complete order button
-// pay button
+
 document.addEventListener("click", (e) => {
+  // add button
   if (e.target.dataset.add) {
     handleAddClick(e.target.dataset.add);
-  } else if (e.target.dataset.remove) {
+  }
+  // remove button
+  else if (e.target.dataset.remove) {
     handleRemoveClick(e.target.dataset.remove);
-  } else if (e.target.id === "complete-order-btn") {
-    showCardModal();
+  }
+  //complete order button
+  else if (e.target.id === "complete-order-btn") {
     cardDetailsModal.style.display = "block";
-  } else if (e.target.id === "card-details-submit-btn") {
+  }
+  // card details button
+  else if (e.target.id === "card-details-submit-btn") {
     e.preventDefault();
     const cardForm = document.getElementById("card-form");
     customerName = cardForm.querySelector('[name="card-name-input"]').value;
-    customerNameSpan.textContent = customerName;
-    cardDetailsModal.style.display = "none";
-    checkoutSection.style.display = "none";
-    thankYouMessage.style.display = "flex";
+    const cardNumber = cardForm.querySelector(
+      '[name="card-number-input"]'
+    ).value;
+    const cvvInput = cardForm.querySelector('[name="card-cvv-input"]').value;
+    if (customerName && cardNumber && cvvInput) {
+      customerNameSpan.textContent = customerName;
+      cardDetailsModal.style.display = "none";
+      checkoutSection.style.display = "none";
+      thankYouMessage.style.display = "flex";
+    } else {
+      console.log("Please enter all details");
+      cardForm.reportValidity();
+    }
   }
 });
 
-/* ADD ITEM */
+/* ADD ITEM TO ORDER */
 function handleAddClick(menuItemId) {
   // find the relevant menu item in data.js and add it to the order array
   const selectedItem = menuArray.find((menuItem) => {
@@ -66,7 +78,7 @@ function handleAddClick(menuItemId) {
   renderCheckout();
 }
 
-/* REMOVE ITEM */
+/* REMOVE ITEM FROM ORDER */
 function handleRemoveClick(removeItemId) {
   const removeItemIndex = orderArray.findIndex(
     (item) => item.id === parseInt(removeItemId)
@@ -81,13 +93,11 @@ function handleRemoveClick(removeItemId) {
 
 /* RENDER CHECKOUT SECTION */
 function renderCheckout() {
-  // If checkout container is hidden, show it
   if (orderArray.length === 0) {
     checkoutSection.style.display = "none";
   } else {
     checkoutSection.style.display = "block";
   }
-  // render the orderArray as needed.
   const checkoutHtmlArray = orderArray.map((orderItem) => {
     return `<div class="checkout-item">
             <p class="checkout-item-count">${orderItem.count}</p>
@@ -131,23 +141,3 @@ function renderMenu() {
   document.getElementById("menu-section").innerHTML = getMenuHtml();
 }
 renderMenu();
-
-/* CARD DETAILS MODAL */
-//- make display none by default
-//- show the modal once the order button has been clicked
-//- modal needs to be fixed
-//- hide modal once pay now button has been clicked
-//- prevent default
-//- need to handle form data and save name for the ty message
-function showCardModal() {
-  console.log("Hi");
-}
-
-/* THANK YOU MESSAGE */
-//- Once pay button is clicked, hide the card modal and show the
-// thank you message using the name from the card details
-
-/* ISSUES */
-/*
- * Form needs to complain if details not entered
- */
