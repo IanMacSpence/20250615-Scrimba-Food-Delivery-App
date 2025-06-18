@@ -130,13 +130,13 @@ function getMenuHtml() {
     return ` <div class="item-card">
               <div class="item-graphic">${menuItem.emoji}</div>
               <div class="item-details-container">
-                  <h3 class="item-title">${menuItem.name}</h3>
+                  <h2 class="item-title">${menuItem.name}</h2>
                   <p class="item-description">${menuItem.ingredients.join(
                     ", "
                   )}</p>
                   <p class="item-price">$${menuItem.price}</p>
               </div>
-              <div class="add-btn" data-add="${menuItem.id}">+</div>
+              <button class="add-btn" data-add="${menuItem.id}">+</button>
             </div>`;
   });
   return menuHtmlArray.join("");
