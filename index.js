@@ -57,12 +57,12 @@ document.addEventListener("click", (e) => {
 function handleAddClick(menuItemId) {
   // find the relevant menu item in data.js and add it to the order array
   const selectedItem = menuArray.find((menuItem) => {
-    return menuItem.id === parseInt(menuItemId);
+    return menuItem.id === Number(menuItemId);
   });
   // if the id exists in the orderArray, just increment the count by 1,
   // if not, add object to orderArray with count set to 1
   const existingOrder = orderArray.find(
-    (item) => item.id === parseInt(menuItemId)
+    (item) => item.id === Number(menuItemId)
   );
   if (existingOrder) {
     existingOrder.count++;
@@ -81,14 +81,16 @@ function handleAddClick(menuItemId) {
 /* REMOVE ITEM FROM ORDER */
 function handleRemoveClick(removeItemId) {
   const removeItemIndex = orderArray.findIndex(
-    (item) => item.id === parseInt(removeItemId)
+    (item) => item.id === Number(removeItemId)
   );
-  if (orderArray[removeItemIndex].count === 1) {
-    orderArray.splice(removeItemIndex, 1);
-  } else {
-    orderArray[removeItemIndex].count--;
+  if (removeItemIndex !== -1) {
+    if (orderArray[removeItemIndex].count === 1) {
+      orderArray.splice(removeItemIndex, 1);
+    } else {
+      orderArray[removeItemIndex].count--;
+    }
+    renderCheckout();
   }
-  renderCheckout();
 }
 
 /* RENDER CHECKOUT SECTION */
@@ -98,7 +100,17 @@ function renderCheckout() {
   } else {
     checkoutSection.style.display = "block";
   }
-  const checkoutHtmlArray = orderArray.map((orderItem) => {
+  const checkoutHtmlArray = getCheckoutHtml();
+  checkoutItemsContainer.innerHTML = checkoutHtmlArray.join("");
+  // Calculate total price
+  const totalPrice = orderArray.reduce((sum, currentItem) => {
+    return sum + currentItem.price * currentItem.count;
+  }, 0);
+  totalPriceDiv.textContent = `$${totalPrice}`;
+}
+
+function getCheckoutHtml() {
+  return orderArray.map((orderItem) => {
     return `<div class="checkout-item">
             <p class="checkout-item-count">${orderItem.count}</p>
             <p class="checkout-item-title">${orderItem.name}</p>
@@ -110,12 +122,6 @@ function renderCheckout() {
             }</p>
           </div>`;
   });
-  checkoutItemsContainer.innerHTML = checkoutHtmlArray.join("");
-  // Calculate total price
-  const totalPrice = orderArray.reduce((sum, currentItem) => {
-    return sum + currentItem.price * currentItem.count;
-  }, 0);
-  totalPriceDiv.textContent = `$${totalPrice}`;
 }
 
 /* GET THE HTML FOR MENU FROM data.js */
